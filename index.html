@@ -92,6 +92,16 @@ h1 .nw{white-space:nowrap}
 .composer.sent .orb{transform:scale(.94)}
 .composer .orb{transition:transform .18s}
 .hint{margin:11px 0 0;font-size:12.5px;color:var(--faint)}
+.a p.aside{font-size:13.5px;color:var(--faint);margin:-4px 0 17px}
+details.earlier{margin:6px 0 4px}
+details.earlier > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;
+  font-size:14.5px;color:var(--muted);padding:11px 0}
+details.earlier > summary::-webkit-details-marker{display:none}
+details.earlier > summary:hover{color:var(--ink)}
+details.earlier > summary .cv{width:15px;height:15px;stroke:currentColor;stroke-width:2;fill:none;
+  transition:transform .18s}
+details.earlier[open] > summary .cv{transform:rotate(90deg)}
+details.earlier > .body{padding-top:4px}
 .cslot{margin:26px auto 0;max-width:600px;overflow:hidden;transition:height .5s cubic-bezier(.32,.72,.2,1),margin-top .5s cubic-bezier(.32,.72,.2,1)}
 .dock{z-index:56}
 .dock.fx{position:fixed;will-change:top;transition:top .58s cubic-bezier(.32,.72,.2,1)}
@@ -363,19 +373,18 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
       <p>She is my mother. She is sixty, she lives in Gurgaon, and she runs a kirtan group. She has never made
         an account. She opens ChatGPT in a browser on her phone and types in Hindi.</p>
 
-      <p>Every week there is something to invite people to, and every week she used to ask somebody younger to
-        make the invitation. Now she does not. She describes the occasion and gets a finished poster back.</p>
+      <p>Every week there is something to invite people to. She used to ask somebody younger to make the
+        invitation. Now she describes the occasion and gets a finished poster back.</p>
 
-      <p>She does not only use it for posters. In the first screenshot below she is setting it a riddle about
-        which of Tinku bhai's three sisters will tie rakhi first and who will get the biggest gift. Nobody taught
-        her to do that. She does it because she enjoys it, which is what a habit looks like before anyone has
-        thought to charge for it.</p>
+      <p>She does not only make posters. In the first screenshot she is setting it a riddle about which of
+        Tinku bhai's three sisters gets the biggest rakhi gift. Nobody taught her that. She does it for fun, which
+        is what a habit looks like before anyone has thought to charge for it.</p>
 
       <div class="shots">
         <div>
           <div class="shot"><img src="img/chatgpt-hindi.jpg" alt="ChatGPT conversation in Hindi on a mobile browser, logged out"></div>
-          <p class="cap">The rakhi riddle, in Hindi, in a mobile browser, with the Log in button still sitting
-            in the corner. No account, so no memory, no history and no way to charge her.</p>
+          <p class="cap">The rakhi riddle, in Hindi, in a mobile browser, Log in still sitting in the corner.
+            No account, so no memory, no history and no way to charge her.</p>
         </div>
         <div>
           <div class="shot"><img src="img/poster-janmashtami.jpg" alt="Janmashtami invitation poster generated in Hindi"></div>
@@ -388,14 +397,12 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
       </div>
       <span class="redact"><b>Venue, date and time redacted.</b> They are a real home and a real gathering.</span>
 
-      <p style="margin-top:22px">There is a structural reason she has no account, and it is not that she could
-        not manage one. It is the number I keep returning to in my own writing on this audience:
-        <strong>90% of Android users in India do not use their email IDs.</strong> An email-first signup is not a
-        small piece of friction in Bharat. It is the wall.</p>
-      <p>I have seen this exact behaviour before, at scale. Personalised festival and devotional
-        graphics, made to be sent on WhatsApp, is the single biggest paid content category in Bharat. It is what
-        <strong>Crafto</strong> sells, and it is what I spent three years monetising. On a festival day Crafto goes from
-        3M+ daily actives to 10M.</p>
+      <p style="margin-top:22px">She has no account for a structural reason, not a personal one.
+        <strong>90% of Android users in India do not use their email IDs.</strong> An email-first signup is not
+        friction in Bharat. It is the wall.</p>
+      <p>I have seen this at scale. Personalised festival and devotional graphics, made to be sent on WhatsApp,
+        is the biggest paid content category in Bharat. It is what <strong>Crafto</strong> sells and what I spent
+        three years monetising. On a festival day Crafto goes from 3M+ daily actives to 10M.</p>
       <p>So the thing my mother is doing on ChatGPT for free is a category that <strong>3M+ Indians already pay
         for.</strong> She is not an edge case. She is the customer, arriving early, through the wrong door.</p>
       <div class="acts">
@@ -419,13 +426,12 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
       </div>
       <details class="src2"><summary><svg class="cv" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg><span>Sources &middot; 3</span></summary><div class="body">Sam Altman and OpenAI via TechCrunch, February 2026. TechCrunch on the ChatGPT Go launch, August 2025. OpenAI's twelve-month India offer. India is 9.79% of ChatGPT traffic against 18.53% for the United States.</div></details>
 
-      <p>Two things follow from those four numbers, and they point in opposite directions.</p>
-      <p>The first is that <strong>the land grab is working</strong>. Free Go for a year buys reach that no competitor
-        can match, and paid subscribers in India more than doubled after Go launched even at ₹399.</p>
-      <p>The second is the part I would want to work on. <strong>Eighty percent of Indian messages come from people
-        under 30.</strong> That is students, early-career professionals and developers. It is a real and valuable cohort,
-        and it is also the cohort with the least disposable income and the least habit of paying for software in India.
-        My mother, and everybody in her kirtan group, is in the other twenty percent.</p>
+      <p><strong>The land grab is working.</strong> Free Go for a year buys reach no competitor can match, and
+        paid subscribers in India more than doubled after Go launched even at ₹399.</p>
+      <p>But <strong>eighty percent of Indian messages come from people under 30</strong>: students, early-career
+        professionals and developers. A real cohort, and also the one with the least disposable income and the least
+        habit of paying for software in India. My mother, and everybody in her kirtan group, is in the other twenty
+        percent.</p>
       <div class="acts">
         <span><svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg></span>
         <span><svg viewBox="0 0 24 24"><path d="M7 22V11l5-9a2.2 2.2 0 012 3l-1 5h5.5a2 2 0 012 2.4l-1.6 7A2 2 0 0116 22z"/></svg></span>
@@ -437,9 +443,9 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
   <section class="turn" id="s3">
     <div class="uwrap"><div class="ubub">Does India actually pay for consumer software, or is that a myth?</div></div>
     <div class="a">
-      <p>It pays. It just pays differently, and the companies that have worked that out are not the ones people
-        usually name. Liking a product and paying for it are completely separate decisions, and India is the market
-        where that gap is widest. Every figure below is from FY25 statutory filings.</p>
+      <p>It pays, just differently, and the companies that worked that out are not the ones people name. Liking
+        a product and paying for it are separate decisions, and India is where that gap is widest. Every figure below
+        is from FY25 statutory filings.</p>
       <div class="tw">
         <table>
           <thead><tr><th>Company</th><th>FY25 revenue</th><th>Growth</th><th>Bottom line</th><th>Marketing spend</th></tr></thead>
@@ -447,16 +453,15 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
             <tr><td>Kuku FM</td><td class="num">&#8377;258.4 Cr</td><td class="num">+148%</td><td class="num neg">Loss &#8377;153 Cr</td><td class="num">&#8377;285 Cr</td></tr>
             <tr><td>Seekho</td><td class="num">&#8377;141.5 Cr</td><td class="num">12x</td><td class="num neg">Loss &#8377;39 Cr</td><td class="num">&#8377;134 Cr</td></tr>
             <tr class="hl"><td>Kutumb (Crafto)</td><td class="num">&#8377;128.6 Cr</td><td class="num">+173%</td><td class="num pos">Profit &#8377;12 Cr</td><td class="num">&#8377;84.6 Cr</td></tr>
-            <tr><td>VoiceClub</td><td class="num">&#8377;14.5 Cr</td><td class="num">+425%</td><td class="num">Seed stage</td><td class="num" style="color:var(--faint)">Not disclosed</td></tr>
             <tr><td>Pocket FM</td><td class="num">$127.0 M</td><td class="num">+496%</td><td class="num neg">Loss $19.9 M</td><td class="num" style="color:var(--faint)">Not disclosed</td></tr>
           </tbody>
         </table>
       </div>
-      <details class="src2"><summary><svg class="cv" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg><span>Sources &middot; 5 filings</span></summary><div class="body">Kuku FM, Seekho, Kutumb and VoiceClub: FY25 statutory filings. Pocket FM: FY24 global revenue, of which $112.9M was subscription. Reported by Entrackr, Inc42 and company filings. Kuku FM reports 10M+ paying subscribers; Seekho reports 5M+ subscribers and 25M MAU.</div></details>
+      <details class="src2"><summary><svg class="cv" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg><span>Sources &middot; 4 filings</span></summary><div class="body">Kuku FM, Seekho and Kutumb: FY25 statutory filings. Pocket FM: FY24 global revenue, of which $112.9M was subscription. Reported by Entrackr, Inc42 and company filings. Kuku FM reports 10M+ paying subscribers; Seekho reports 5M+ subscribers and 25M MAU.</div></details>
 
-      <p>Read the column on the right against the one in the middle. <strong>Kuku FM spent ₹285 Cr to earn ₹258 Cr.
-        Seekho spent ₹134 Cr to earn ₹141 Cr.</strong> The category is real, the demand is real, and almost everyone
-        is buying it rather than earning it.</p>
+      <p>Read the right column against the middle one. <strong>Kuku FM spent ₹285 Cr to earn ₹258 Cr. Seekho
+        spent ₹134 Cr to earn ₹141 Cr.</strong> The demand is real. Almost everyone is buying it rather than
+        earning it.</p>
       <div class="acts">
         <span><svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg></span>
         <span><svg viewBox="0 0 24 24"><path d="M7 22V11l5-9a2.2 2.2 0 012 3l-1 5h5.5a2 2 0 012 2.4l-1.6 7A2 2 0 0116 22z"/></svg></span>
@@ -470,40 +475,28 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
     <div class="a">
       <p>I was the product manager on conversion, virality and pricing at Crafto from August 2023 to February 2026,
         which covers that fiscal year. Entrackr attributed the 2.7x jump <strong>primarily to higher subscription
-        revenue from Crafto</strong>. Here is what sat underneath it.</p>
-      <h3>Conversion</h3>
+        revenue</strong>.</p>
       <ul>
-        <li>D1 conversion up <strong>58%</strong> and D7 up <strong>45%</strong>, built from a premium screen in
-          onboarding (+14% D1), short reels (+22% D1), background-free photo uploads (+10% D1) and name styling (+11% D1).</li>
-        <li>Login funnel up <strong>12% on registration</strong>, including +5% from removing a Truecaller
-          integration that the data said was costing us users.</li>
-      </ul>
-      <h3>Pricing</h3>
-      <ul>
-        <li>A two-day free trial that lifted overall payment conversion <strong>30%</strong>, and 10+ pricing UI
-          experiments on trial screens that improved trial success <strong>38%</strong>.</li>
-      </ul>
-      <h3>The format insight, which is the one that matters here</h3>
-      <ul>
+        <li>D1 conversion up <strong>58%</strong> and D7 up <strong>45%</strong>, off four changes to onboarding
+          and content format.</li>
+        <li>A two-day free trial lifted overall payment conversion <strong>30%</strong>, and 10+ pricing
+          experiments on trial screens improved trial success <strong>38%</strong>.</li>
         <li>Custom placement of a user's photo and name drove <strong>+27%</strong> on shares and downloads, became
           <strong>90% of the top ten content</strong> in that format, and lifted festival-day payment conversion
           <strong>21%</strong>.</li>
-        <li>I identified a specifically Indian sharing format, "User's name ke taraf se good morning", which drove
-          <strong>+22%</strong> share and download on its own.</li>
       </ul>
-      <p>None of that was a pricing decision. It was a format decision that made the thing worth paying for, and then
-        a price low enough to say yes to. That order matters, and it is the order I would apply here.</p>
+      <p class="aside">Every experiment behind those numbers is in the resume below.</p>
+      <p>None of that was a pricing decision. It was a format decision that made the thing worth paying for, and
+        then a price low enough to say yes to. That order is the one I would apply here.</p>
     </div>
   </section>
 
   <section class="turn" id="s5">
     <div class="a">
       <div class="callout">
-        <p>The people sending 80% of India's ChatGPT messages and the people who actually pay for software in India
-          are not the same people.</p>
         <p>My mother generates the highest-intent commercial content on the platform, several times a month, and
-          OpenAI does not know she exists. She has no account. There is no upgrade path from a poster, and there is
-          nothing in the product that has ever asked her for one.</p>
+          OpenAI does not know she exists. There is no upgrade path from a poster, and nothing in the product has
+          ever asked her for one.</p>
       </div>
     </div>
   </section>
@@ -511,51 +504,41 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
   <section class="turn" id="writing">
     <div class="uwrap"><div class="ubub">Is this a new opinion, or have you been saying it for a while?</div></div>
     <div class="a">
-      <p>I have been writing about this audience publicly for two years, long before I had any reason to send it to
-        you. Three lines from those essays, which are the foundation this page is built on.</p>
+      <p>I have been writing about this audience for two years, long before I had a reason to send it to you.</p>
 
       <blockquote>Bharat doesn't need your product to be cheaper. It needs your product to make them feel seen.
         <cite><a href="https://khushisdigitalgarden.substack.com/p/5-years-3-startups-1-audience-tier" target="_blank" rel="noopener">5 Years, 3 Startups, 1 Audience: Tier 2 and Tier 3 Bharat</a></cite></blockquote>
-
-      <blockquote>CAC blowing up as you scale into a new language isn't a marketing problem. It's a signal that the
-        underlying value proposition is regional.
-        <cite><a href="https://khushisdigitalgarden.substack.com/p/why-scaling-across-bharat-becomes" target="_blank" rel="noopener">Why scaling across Bharat becomes tricky</a></cite></blockquote>
 
       <blockquote>Aspiration is universal. The vector it travels through is regional.
         <cite><a href="https://khushisdigitalgarden.substack.com/p/why-scaling-across-bharat-becomes" target="_blank" rel="noopener">Why scaling across Bharat becomes tricky</a></cite></blockquote>
 
       <p>ChatGPT Go went from ₹1,999 to ₹399 to free. That is the cheaper lever, pulled three times, and it has
-        bought enormous reach. <strong>The other lever has not been touched yet</strong>, and it is the one that
-        decides what happens when the free year ends.</p>
-      <p>It also means Tier 2 is not one market. An aspirational Tier 2 city like Surat or Kochi and a frontier
-        Tier 2 city like Gorakhpur behave nothing alike on price, language or willingness to create an account.
-        Treating India as one localisation target is how CAC quietly doubles.</p>
+        bought enormous reach. <strong>The other lever has not been touched</strong>, and it is the one that decides
+        what happens when the free year ends.</p>
     </div>
   </section>
 
   <section class="turn" id="s6">
     <div class="uwrap"><div class="ubub">So what would you actually do about it?</div></div>
     <div class="a">
-      <p>I have not seen your data, so treat these as the questions I would start from rather than a plan.</p>
+      <p>I have not seen your data, so these are the questions I would start from, not a plan.</p>
       <div class="cards">
         <div class="card"><span class="n">01</span><h4>Find the 45-plus cohort in the logs</h4>
-          <p>Not by age, which you do not have, but by behaviour: Hindi and Indic-script prompts, image generation for
-            festivals and invitations, logged-out mobile web sessions that repeat from the same device. Size it before
-            arguing about it. My guess is that it is larger than anyone has bothered to measure, because nobody has
-            looked for it.</p></div>
+          <p>Not by age, which you do not have, but by behaviour: Hindi and Indic-script prompts, festival and
+            invitation image generation, logged-out mobile web sessions repeating from one device. Size it before
+            arguing about it. My guess is it is larger than anyone has measured, because nobody has looked.</p></div>
         <div class="card"><span class="n">02</span><h4>Give the output a reason to need an account</h4>
-          <p>The poster is finished, so there is nothing to come back for. Editable saved posters, a reusable style,
-            her group's name remembered between sessions. In Crafto, personalisation was not a feature, it was the
-            entire reason people paid. It also happens to be what an account is for.</p></div>
+          <p>The poster is finished, so there is nothing to come back for. Editable saved posters, a reusable
+            style, her group's name remembered between sessions. At Crafto, personalisation was not a feature, it was
+            the entire reason people paid. It is also what an account is for.</p></div>
         <div class="card"><span class="n">03</span><h4>Price the occasion, not the month</h4>
           <p>Bharat buys festivals, not subscriptions. Crafto's festival-day payment conversion moved 21% off one
-            format change. When Go stops being free in month thirteen, a flat monthly price will convert the under-30s
-            who already pay for software and lose everyone else. There are other shapes worth testing.</p></div>
+            format change. When Go stops being free in month thirteen, a flat monthly price converts the under-30s who
+            already pay and loses everyone else.</p></div>
         <div class="card"><span class="n">04</span><h4>Ship the WhatsApp edge</h4>
-          <p>Everything my mother makes leaves for WhatsApp within seconds, and it arrives with no idea where it came
-            from. That is a distribution loop running at full volume with attribution switched off. At Crafto, the
-            shareable artefact was the acquisition channel, and I ran two viral experiments that lifted shares and
-            downloads 50%.</p></div>
+          <p>Everything my mother makes leaves for WhatsApp within seconds and arrives with no idea where it came
+            from. That is a distribution loop running at full volume with attribution off. At Crafto the shareable
+            artefact was the acquisition channel, and two viral experiments lifted shares and downloads 50%.</p></div>
       </div>
     </div>
   </section>
@@ -638,6 +621,8 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
         </div>
       </div>
 
+      <details class="earlier"><summary><svg class="cv" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg><span>Earlier roles &middot; Winuall, Ohana Academy, Beyond Overthinking</span></summary>
+      <div class="body">
       <div class="job">
         <div class="jh"><b>Associate Product Manager, Winuall</b><span class="when">May 2022 to Jul 2023</span></div>
         <ul>
@@ -663,6 +648,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
           <li>Led a team of <span class="n2">15 members</span>, juggling multiple roles across growth, PR, community, social media, content and design.</li>
         </ul>
       </div>
+      </div></details>
 
       <p style="margin-top:24px">BA in Psychology, Sociology and Economics from Banasthali Vidhyapeeth, 9.01 CGPA.</p>
     </div>
@@ -895,6 +881,13 @@ document.documentElement.className+=' js';
       j.classList.toggle('dim',!any);
     });
   }
+  var earlier=document.querySelector('details.earlier');
+  var _apply=apply;
+  apply=function(){
+    _apply();
+    // if a filter is on, open the earlier roles so no match can hide inside them
+    if(earlier && chips.some(function(c){return c.getAttribute('aria-pressed')==='true';})) earlier.open=true;
+  };
   chips.forEach(function(c){
     function tog(){ c.setAttribute('aria-pressed', c.getAttribute('aria-pressed')==='true'?'false':'true'); apply(); }
     c.addEventListener('click',tog);
