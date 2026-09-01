@@ -353,7 +353,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
 <div class="wrap">
 
   <section class="turn" id="s1">
-    <div class="uwrap"><div class="ubub">Show me how a woman in her sixties in Gurgaon actually uses ChatGPT.</div></div>
+    <div class="uwrap"><div class="ubub">Show me how an Indian consumer uses ChatGPT.</div></div>
     <div class="a">
       <p>She runs a kirtan group. Every week there is something to invite people to, and every week she used to
         ask somebody younger to make the invitation. Now she does not. She opens ChatGPT in a browser on her phone,
@@ -747,26 +747,34 @@ document.documentElement.className+=' js';
   function ask(text, done){
     busy = true;
     comp.classList.add('typing');
-    var speed = Math.max(8, Math.min(17, 950 / text.length));
+    // a steady human rate, with a ceiling so the longest question still lands in
+    // about three and a half seconds
+    var base = Math.min(64, 4000 / text.length);
     var i = 0;
     (function tick(){
       if(i >= text.length){
         setText(text, false, false); place();
-        setTimeout(function(){
+        setTimeout(function(){            // the beat before you hit enter
           comp.classList.add('sent');
           setTimeout(function(){
             comp.classList.remove('sent');
             comp.classList.remove('typing');
             setText(PH, false, true); place();
             done();
-          }, 180);
-        }, 300);
+          }, 190);
+        }, 430);
         return;
       }
+      var ch = text.charAt(i);
       i++;
       setText(text.slice(0, i), true, false);
       place();
-      setTimeout(tick, speed);
+      // uneven the way real keystrokes are: jitter, the odd hesitation between
+      // words, and a longer breath after punctuation
+      var d = base * (0.55 + Math.random() * 0.9);
+      if(ch === ' ' && Math.random() < 0.20) d += base * 2.4;
+      if(ch === ',') d += base * 3;
+      setTimeout(tick, d);
     })();
   }
 
@@ -783,7 +791,7 @@ document.documentElement.className+=' js';
     }
     setTimeout(function(){
       if(dot && dot.parentNode) dot.parentNode.removeChild(dot);
-      kids.forEach(function(k,i){ k.style.transitionDelay = Math.min(i*70,560)+'ms'; });
+      kids.forEach(function(k,i){ k.style.transitionDelay = Math.min(i*115,780)+'ms'; });
       sec.classList.add('a-in');
       busy = false;
       check();
@@ -800,7 +808,7 @@ document.documentElement.className+=' js';
     ask(bub.textContent, function(){
       sec.classList.add('u-in');   // the question lands in the thread, already written
       dockIt();
-      answer(sec, 620, true);
+      answer(sec, 900, true);
     });
   }
 
