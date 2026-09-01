@@ -18,6 +18,7 @@ html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
   font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 .wrap{max-width:768px;margin:0 auto;padding:0 24px}
+.wrap.hero-wrap{max-width:900px}
 .wide{max-width:1024px;margin:0 auto;padding:0 24px}
 
 /* ---------- top bar ---------- */
@@ -45,12 +46,16 @@ header.stuck{border-bottom-color:var(--line)}
 .hero{padding:58px 0 30px;text-align:center}
 .spark{width:32px;height:32px;margin:0 auto 22px;display:block}
 .spark path{fill:var(--ink)}
-h1{font-size:clamp(25px,3.2vw,36px);line-height:1.17;letter-spacing:-.024em;font-weight:600;
-  margin:0 auto 14px;max-width:600px}
-h1 .dim{display:block;color:#6E6E6E;font-weight:400;font-size:.82em;letter-spacing:-.018em;
-  margin:11px auto 0;max-width:none}
-h1 .dim .l2{display:block}
+h1{font-size:clamp(24px,3.05vw,35px);line-height:1.17;letter-spacing:-.024em;font-weight:600;
+  margin:0 auto 14px;max-width:none}
+h1 .dim{display:block;color:#6E6E6E;font-weight:400;font-size:.80em;letter-spacing:-.018em;
+  margin:12px auto 0;max-width:none}
+h1 .dim .l2{display:inline}
 h1 .nw{white-space:nowrap}
+/* desktop: headline and its grey line each hold a single line */
+@media(min-width:900px){
+  h1,h1 .dim{white-space:nowrap}
+}
 .sub{color:var(--muted);font-size:15.5px;max-width:46ch;margin:0 auto;line-height:1.62}
 
 /* composer pill */
@@ -108,6 +113,18 @@ h1 .nw{white-space:nowrap}
 /* reveal */
 .rv{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s cubic-bezier(.2,.7,.3,1)}
 .rv.in{opacity:1;transform:none}
+
+/* ---------- chat choreography ---------- */
+html.js .turn .uwrap{opacity:0;transform:translateY(9px)}
+html.js .turn .a > *{opacity:0;transform:translateY(8px)}
+html.js .turn.u-in .uwrap{opacity:1;transform:none;
+  transition:opacity .26s ease, transform .3s cubic-bezier(.2,.7,.3,1)}
+html.js .turn.a-in .a > *{opacity:1;transform:none;
+  transition:opacity .32s ease, transform .34s cubic-bezier(.2,.7,.3,1)}
+.thinking{height:26px;display:flex;align-items:center;margin:2px 0 6px}
+.thinking i{display:block;width:13px;height:13px;border-radius:50%;background:var(--ink);
+  animation:think 1.1s ease-in-out infinite}
+@keyframes think{0%,100%{transform:scale(.7);opacity:.4}50%{transform:scale(1);opacity:1}}
 
 /* ---------- evidence ---------- */
 .shots{display:grid;grid-template-columns:0.82fr 1fr 1fr;gap:14px;margin:6px 0 20px;align-items:start}
@@ -272,6 +289,8 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
 @media(prefers-reduced-motion:reduce){
   *{animation:none !important;transition:none !important}
   .rv{opacity:1;transform:none}
+  html.js .turn .uwrap,html.js .turn .a > *{opacity:1 !important;transform:none !important}
+  .thinking{display:none}
 }
 </style>
 
@@ -300,7 +319,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
   </div>
 </header>
 
-<div class="wrap">
+<div class="wrap hero-wrap">
   <section class="hero">
     <svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l1.62 5.03a5.6 5.6 0 003.6 3.6L22.4 12l-5.18 1.77a5.6 5.6 0 00-3.6 3.6L12 22.4l-1.62-5.03a5.6 5.6 0 00-3.6-3.6L1.6 12l5.18-1.77a5.6 5.6 0 003.6-3.6z"/></svg>
     <h1>Notes on why India does not <span class="nw">pay yet.</span><span class="dim">From someone who got <span class="nw">three million Indians to.</span></span></h1>
@@ -319,7 +338,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
 
 <div class="wrap">
 
-  <section class="turn rv" id="s1">
+  <section class="turn" id="s1">
     <div class="uwrap"><div class="ubub">Show me how a woman in her sixties in Gurgaon actually uses ChatGPT.</div></div>
     <div class="a">
       <p>She runs a kirtan group. Every week there is something to invite people to, and every week she used to
@@ -362,7 +381,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
     </div>
   </section>
 
-  <section class="turn rv" id="s2">
+  <section class="turn" id="s2">
     <div class="uwrap"><div class="ubub">How big is India for OpenAI, and what does it earn there?</div></div>
     <div class="a">
       <p>Enormous, and close to nothing, on purpose.</p>
@@ -389,7 +408,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
     </div>
   </section>
 
-  <section class="turn rv" id="s3">
+  <section class="turn" id="s3">
     <div class="uwrap"><div class="ubub">Does India actually pay for consumer software, or is that a myth?</div></div>
     <div class="a">
       <p>It pays. It just pays differently, and the companies that have worked that out are not the ones people
@@ -420,7 +439,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
     </div>
   </section>
 
-  <section class="turn rv" id="s4">
+  <section class="turn" id="s4">
     <div class="uwrap"><div class="ubub">One of those made money. What was your part in it?</div></div>
     <div class="a">
       <p>I was the product manager on conversion, virality and pricing at Crafto from August 2023 to February 2026,
@@ -451,7 +470,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
     </div>
   </section>
 
-  <section class="turn rv" id="s5">
+  <section class="turn" id="s5">
     <div class="a">
       <div class="callout">
         <p>The people sending 80% of India's ChatGPT messages and the people who actually pay for software in India
@@ -463,7 +482,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
     </div>
   </section>
 
-  <section class="turn rv" id="writing">
+  <section class="turn" id="writing">
     <div class="uwrap"><div class="ubub">Is this a new opinion, or have you been saying it for a while?</div></div>
     <div class="a">
       <p>I have been writing about this audience publicly for two years, long before I had any reason to send it to
@@ -488,7 +507,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
     </div>
   </section>
 
-  <section class="turn rv" id="s6">
+  <section class="turn" id="s6">
     <div class="uwrap"><div class="ubub">So what would you actually do about it?</div></div>
     <div class="a">
       <p>I have not seen your data, so treat these as the questions I would start from rather than a plan.</p>
@@ -515,7 +534,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
     </div>
   </section>
 
-  <section class="turn rv" id="work">
+  <section class="turn" id="work">
     <div class="uwrap"><div class="ubub">Show me the whole resume, not just the parts that suit your argument.</div></div>
     <div class="a">
       <p>All of it, nothing removed. Filter it if you want to see one thread at a time. Some bullets match no filter,
@@ -648,11 +667,49 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
 </footer>
 
 <script>
+document.documentElement.className+=' js';
 (function(){
   var io=new IntersectionObserver(function(es){
     es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
   },{rootMargin:'0px 0px -6% 0px',threshold:.04});
   document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
+
+  // each section plays like a real exchange: question lands, Claude thinks, answer arrives
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function play(sec){
+    var a = sec.querySelector('.a');
+    var kids = a ? [].slice.call(a.children) : [];
+    var asked = !!sec.querySelector('.uwrap');
+    sec.classList.add('u-in');
+    if(reduce){ sec.classList.add('a-in'); return; }
+    var dot=null;
+    if(a && asked){
+      dot=document.createElement('div'); dot.className='thinking'; dot.innerHTML='<i></i>';
+      a.parentNode.insertBefore(dot,a);
+    }
+    setTimeout(function(){
+      if(dot && dot.parentNode) dot.parentNode.removeChild(dot);
+      kids.forEach(function(k,i){ k.style.transitionDelay = Math.min(i*70,560)+'ms'; });
+      sec.classList.add('a-in');
+    }, asked ? 640 : 200);
+  }
+  var pending=[].slice.call(document.querySelectorAll('.turn'));
+  function check(){
+    var line=innerHeight*0.86;
+    for(var i=pending.length-1;i>=0;i--){
+      if(pending[i].getBoundingClientRect().top < line){ play(pending.splice(i,1)[0]); }
+    }
+  }
+  addEventListener('scroll',check,{passive:true});
+  addEventListener('resize',check);
+  check();
+  // backstop: a missed scroll event must never leave content invisible
+  setInterval(function(){
+    if(!pending.length) return;
+    for(var i=pending.length-1;i>=0;i--){
+      if(pending[i].getBoundingClientRect().top < innerHeight*1.6){ play(pending.splice(i,1)[0]); }
+    }
+  },1200);
 
   var hdr=document.querySelector('header');
   addEventListener('scroll',function(){ hdr.classList.toggle('stuck', scrollY>12); },{passive:true});
