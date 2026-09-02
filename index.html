@@ -23,7 +23,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
 .wide{max-width:1024px;margin:0 auto;padding:0 24px}
 
 /* ---------- top bar ---------- */
-header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.85);backdrop-filter:blur(12px);
+header{position:sticky;top:0;z-index:50;background:rgba(249,249,249,.85);backdrop-filter:blur(12px);
   border-bottom:1px solid transparent;transition:border-color .2s}
 header.stuck{border-bottom-color:var(--line)}
 .bar{max-width:1024px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:14px}
@@ -44,7 +44,10 @@ header.stuck{border-bottom-color:var(--line)}
   font-size:11.5px;font-weight:600;letter-spacing:.02em;flex:none}
 
 /* ---------- hero ---------- */
-.hero{padding:58px 0 30px;text-align:center}
+/* the intro is its own tinted surface and ends on a hairline, so the thread
+   below it reads as a separate thing */
+.heroband{background:var(--surface);border-bottom:1px solid var(--line)}
+.hero{padding:58px 0 34px;text-align:center}
 .spark{width:32px;height:32px;margin:0 auto 22px;display:block}
 .spark path{fill:var(--ink)}
 h1{font-size:clamp(24px,3.05vw,35px);line-height:1.17;letter-spacing:-.024em;font-weight:600;
@@ -92,6 +95,10 @@ h1 .nw{white-space:nowrap}
 .composer.sent .orb{transform:scale(.94)}
 .composer .orb{transition:transform .18s}
 .hint{margin:11px 0 0;font-size:12.5px;color:var(--faint)}
+/* where the conversation starts: a chat's own date divider */
+.tstart{display:flex;align-items:center;gap:14px;margin:30px 0 2px;font-size:12px;color:var(--faint)}
+.tstart:before,.tstart:after{content:"";flex:1;height:1px;background:var(--line)}
+.tstart span{white-space:nowrap;letter-spacing:.02em}
 .a p.aside{font-size:13.5px;color:var(--faint);margin:-4px 0 17px}
 details.earlier{margin:6px 0 4px}
 details.earlier > summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;
@@ -113,6 +120,7 @@ details.earlier > .body{padding-top:4px}
 
 /* ---------- thread ---------- */
 .turn{padding:34px 0}
+.turn:first-of-type{padding-top:26px}
 .turn + .turn{border-top:1px solid var(--line2)}
 .uwrap{display:flex;justify-content:flex-end;margin-bottom:26px}
 .ubub{background:var(--bubble);border-radius:22px;padding:11px 18px;font-size:16px;line-height:1.6;
@@ -289,7 +297,8 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
 }
 @media(max-width:640px){
   .wrap,.wide{padding:0 18px}
-  .hero{padding:42px 0 22px}
+  .hero{padding:42px 0 26px}
+  .tstart{margin:24px 0 0}
   h1{font-size:25px;max-width:none}
   h1 .dim{font-size:.86em;max-width:none}
   h1 .dim .l2{display:inline}
@@ -346,10 +355,11 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
 
 <div class="dockfade" id="dockfade" aria-hidden="true"></div>
 
+<div class="heroband">
 <div class="wrap hero-wrap">
   <section class="hero">
     <svg class="spark" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1.6l1.62 5.03a5.6 5.6 0 003.6 3.6L22.4 12l-5.18 1.77a5.6 5.6 0 00-3.6 3.6L12 22.4l-1.62-5.03a5.6 5.6 0 00-3.6-3.6L1.6 12l5.18-1.77a5.6 5.6 0 003.6-3.6z"/></svg>
-    <h1>Notes on why India does not <span class="nw">pay yet.</span><span class="dim">From someone who got <span class="nw">three million Indians to.</span></span></h1>
+    <h1>India already pays. Nobody has asked <span class="nw">it properly.</span><span class="dim">I spent three years getting three million <span class="nw">Indians to pay.</span></span></h1>
     <p class="sub">I am Khushi Bagai. I ran conversion, virality and pricing at Crafto,
       <span class="l2">India's largest content sharing app and the only profitable company on the list below.</span></p>
 
@@ -364,21 +374,24 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
     </div></div>
   </section>
 </div>
+</div>
 
 <div class="wrap">
 
+  <div class="tstart" aria-hidden="true"><span>Today</span></div>
+
   <section class="turn" id="s1">
-    <div class="uwrap"><div class="ubub">Show me how an Indian consumer uses ChatGPT.</div></div>
+    <div class="uwrap"><div class="ubub">Show me how India really uses ChatGPT.</div></div>
     <div class="a">
       <p>She is my mother. She is sixty, she lives in Gurgaon, and she runs a kirtan group. She has never made
         an account. She opens ChatGPT in a browser on her phone and types in Hindi.</p>
 
-      <p>Every week there is something to invite people to. She used to ask somebody younger to make the
-        invitation. Now she describes the occasion and gets a finished poster back.</p>
+      <p>Every week there is something to invite people to. She used to ask somebody younger. Now she describes
+        the occasion and gets the poster back.</p>
 
-      <p>She does not only make posters. In the first screenshot she is setting it a riddle about which of
-        Tinku bhai's three sisters gets the biggest rakhi gift. Nobody taught her that. She does it for fun, which
-        is what a habit looks like before anyone has thought to charge for it.</p>
+      <p>She also sets it riddles: which of Tinku bhai's three sisters gets the biggest rakhi gift. Nobody taught
+        her that. She does it for fun, which is what a habit looks like before anyone has thought to charge for
+        it.</p>
 
       <div class="shots">
         <div>
@@ -397,14 +410,13 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
       </div>
       <span class="redact"><b>Venue, date and time redacted.</b> They are a real home and a real gathering.</span>
 
-      <p style="margin-top:22px">She has no account for a structural reason, not a personal one.
-        <strong>90% of Android users in India do not use their email IDs.</strong> An email-first signup is not
-        friction in Bharat. It is the wall.</p>
-      <p>I have seen this at scale. Personalised festival and devotional graphics, made to be sent on WhatsApp,
-        is the biggest paid content category in Bharat. It is what <strong>Crafto</strong> sells and what I spent
-        three years monetising. On a festival day Crafto goes from 3M+ daily actives to 10M.</p>
-      <p>So the thing my mother is doing on ChatGPT for free is a category that <strong>3M+ Indians already pay
-        for.</strong> She is not an edge case. She is the customer, arriving early, through the wrong door.</p>
+      <p style="margin-top:22px"><strong>90% of Android users in India do not use their email IDs.</strong>
+        An email-first signup is not friction in Bharat. It is the wall.</p>
+      <p>Personalised festival and devotional graphics, made for WhatsApp, is the biggest paid content category in
+        Bharat. It is what <strong>Crafto</strong> sells, and what I spent three years monetising, from
+        3M+ daily actives to 10M on a festival day.</p>
+      <p>What my mother makes for free, <strong>3M+ Indians already pay for.</strong> She is not an edge case.
+        She is the customer, arriving early, through the wrong door.</p>
       <div class="acts">
         <span><svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg></span>
         <span><svg viewBox="0 0 24 24"><path d="M7 22V11l5-9a2.2 2.2 0 012 3l-1 5h5.5a2 2 0 012 2.4l-1.6 7A2 2 0 0116 22z"/></svg></span>
@@ -421,17 +433,15 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
       <div class="stats">
         <div class="st"><div class="v">100M</div><div class="k">weekly active users in India, second only to the United States, doubled year on year</div></div>
         <div class="st"><div class="v">80%</div><div class="k">of messages sent in India come from users under 30, and nearly half from 18 to 24 year olds</div></div>
-        <div class="st"><div class="v">&#8377;399</div><div class="k">ChatGPT Go, launched in India first at a fifth of Plus, with UPI</div></div>
+        <div class="st"><div class="v">&#8377;399</div><div class="k">ChatGPT Go, about $4.70 a month, launched in India first at a fifth of Plus, with UPI</div></div>
         <div class="st"><div class="v">&#8377;0</div><div class="k">what Go costs in India today, free for twelve months from 4 November</div></div>
       </div>
       <details class="src2"><summary><svg class="cv" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg><span>Sources &middot; 3</span></summary><div class="body">Sam Altman and OpenAI via TechCrunch, February 2026. TechCrunch on the ChatGPT Go launch, August 2025. OpenAI's twelve-month India offer. India is 9.79% of ChatGPT traffic against 18.53% for the United States.</div></details>
 
-      <p><strong>The land grab is working.</strong> Free Go for a year buys reach no competitor can match, and
-        paid subscribers in India more than doubled after Go launched even at ₹399.</p>
-      <p>But <strong>eighty percent of Indian messages come from people under 30</strong>: students, early-career
-        professionals and developers. A real cohort, and also the one with the least disposable income and the least
-        habit of paying for software in India. My mother, and everybody in her kirtan group, is in the other twenty
-        percent.</p>
+      <p><strong>The land grab is working.</strong> Paid subscribers in India more than doubled even at
+        &#8377;399.</p>
+      <p>The <strong>eighty percent under 30</strong> is the cohort with the least disposable income and the least
+        habit of paying for software. My mother and her kirtan group are in the other twenty percent.</p>
       <div class="acts">
         <span><svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg></span>
         <span><svg viewBox="0 0 24 24"><path d="M7 22V11l5-9a2.2 2.2 0 012 3l-1 5h5.5a2 2 0 012 2.4l-1.6 7A2 2 0 0116 22z"/></svg></span>
@@ -443,25 +453,22 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
   <section class="turn" id="s3">
     <div class="uwrap"><div class="ubub">Does India actually pay for consumer software, or is that a myth?</div></div>
     <div class="a">
-      <p>It pays, just differently, and the companies that worked that out are not the ones people name. Liking
-        a product and paying for it are separate decisions, and India is where that gap is widest. Every figure below
-        is from FY25 statutory filings.</p>
+      <p>It pays, just differently, and the companies that worked that out are not the ones people name.</p>
       <div class="tw">
         <table>
           <thead><tr><th>Company</th><th>FY25 revenue</th><th>Growth</th><th>Bottom line</th><th>Marketing spend</th></tr></thead>
           <tbody>
-            <tr><td>Kuku FM</td><td class="num">&#8377;258.4 Cr</td><td class="num">+148%</td><td class="num neg">Loss &#8377;153 Cr</td><td class="num">&#8377;285 Cr</td></tr>
-            <tr><td>Seekho</td><td class="num">&#8377;141.5 Cr</td><td class="num">12x</td><td class="num neg">Loss &#8377;39 Cr</td><td class="num">&#8377;134 Cr</td></tr>
-            <tr class="hl"><td>Kutumb (Crafto)</td><td class="num">&#8377;128.6 Cr</td><td class="num">+173%</td><td class="num pos">Profit &#8377;12 Cr</td><td class="num">&#8377;84.6 Cr</td></tr>
-            <tr><td>Pocket FM</td><td class="num">$127.0 M</td><td class="num">+496%</td><td class="num neg">Loss $19.9 M</td><td class="num" style="color:var(--faint)">Not disclosed</td></tr>
+            <tr><td>Kuku FM</td><td class="num">$30.4M</td><td class="num">+148%</td><td class="num neg">Loss $18.0M</td><td class="num">$33.5M</td></tr>
+            <tr><td>Seekho</td><td class="num">$16.6M</td><td class="num">12x</td><td class="num neg">Loss $4.6M</td><td class="num">$15.8M</td></tr>
+            <tr class="hl"><td>Kutumb (Crafto)</td><td class="num">$15.1M</td><td class="num">+173%</td><td class="num pos">Profit $1.4M</td><td class="num">$10.0M</td></tr>
+            <tr><td>Pocket FM</td><td class="num">$127.0M</td><td class="num">+496%</td><td class="num neg">Loss $19.9M</td><td class="num" style="color:var(--faint)">Not disclosed</td></tr>
           </tbody>
         </table>
       </div>
-      <details class="src2"><summary><svg class="cv" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg><span>Sources &middot; 4 filings</span></summary><div class="body">Kuku FM, Seekho and Kutumb: FY25 statutory filings. Pocket FM: FY24 global revenue, of which $112.9M was subscription. Reported by Entrackr, Inc42 and company filings. Kuku FM reports 10M+ paying subscribers; Seekho reports 5M+ subscribers and 25M MAU.</div></details>
+      <details class="src2"><summary><svg class="cv" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg><span>Sources &middot; 4 filings</span></summary><div class="body">Kuku FM, Seekho and Kutumb: FY25 statutory filings, via Entrackr and Inc42. Pocket FM: FY24 global revenue, of which $112.9M was subscription. Rupee figures converted at &#8377;85 to the dollar. Kuku FM reports 10M+ paying subscribers; Seekho 5M+ subscribers and 25M MAU.</div></details>
 
-      <p>Read the right column against the middle one. <strong>Kuku FM spent ₹285 Cr to earn ₹258 Cr. Seekho
-        spent ₹134 Cr to earn ₹141 Cr.</strong> The demand is real. Almost everyone is buying it rather than
-        earning it.</p>
+      <p><strong>Kuku FM spent $33.5M to earn $30.4M. Seekho spent $15.8M to earn $16.6M.</strong> The demand
+        is real. Almost everyone is buying it rather than earning it.</p>
       <div class="acts">
         <span><svg viewBox="0 0 24 24"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg></span>
         <span><svg viewBox="0 0 24 24"><path d="M7 22V11l5-9a2.2 2.2 0 012 3l-1 5h5.5a2 2 0 012 2.4l-1.6 7A2 2 0 0116 22z"/></svg></span>
@@ -473,30 +480,27 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
   <section class="turn" id="s4">
     <div class="uwrap"><div class="ubub">One of those made money. What was your part in it?</div></div>
     <div class="a">
-      <p>I was the product manager on conversion, virality and pricing at Crafto from August 2023 to February 2026,
-        which covers that fiscal year. Entrackr attributed the 2.7x jump <strong>primarily to higher subscription
-        revenue</strong>.</p>
+      <p>I ran conversion, virality and pricing there from August 2023 to February 2026, which covers that
+        fiscal year. Entrackr attributed the 2.7x jump <strong>primarily to higher subscription revenue</strong>.</p>
       <ul>
         <li>D1 conversion up <strong>58%</strong> and D7 up <strong>45%</strong>, off four changes to onboarding
           and content format.</li>
-        <li>A two-day free trial lifted overall payment conversion <strong>30%</strong>, and 10+ pricing
-          experiments on trial screens improved trial success <strong>38%</strong>.</li>
-        <li>Custom placement of a user's photo and name drove <strong>+27%</strong> on shares and downloads, became
-          <strong>90% of the top ten content</strong> in that format, and lifted festival-day payment conversion
-          <strong>21%</strong>.</li>
+        <li>A two-day free trial lifted payment conversion <strong>30%</strong>, and 10+ pricing experiments on
+          trial screens improved trial success <strong>38%</strong>.</li>
+        <li>Custom placement of a user's photo and name drove <strong>+27%</strong> on shares and downloads,
+          <strong>90% of the top ten content</strong>, and <strong>21%</strong> on festival-day payment
+          conversion.</li>
       </ul>
-      <p class="aside">Every experiment behind those numbers is in the resume below.</p>
       <p>None of that was a pricing decision. It was a format decision that made the thing worth paying for, and
-        then a price low enough to say yes to. That order is the one I would apply here.</p>
+        then a price low enough to say yes to.</p>
     </div>
   </section>
 
   <section class="turn" id="s5">
     <div class="a">
       <div class="callout">
-        <p>My mother generates the highest-intent commercial content on the platform, several times a month, and
-          OpenAI does not know she exists. There is no upgrade path from a poster, and nothing in the product has
-          ever asked her for one.</p>
+        <p>My mother generates the highest-intent commercial content on the platform, several times a month,
+          and OpenAI does not know she exists.</p>
       </div>
     </div>
   </section>
@@ -512,33 +516,32 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
       <blockquote>Aspiration is universal. The vector it travels through is regional.
         <cite><a href="https://khushisdigitalgarden.substack.com/p/why-scaling-across-bharat-becomes" target="_blank" rel="noopener">Why scaling across Bharat becomes tricky</a></cite></blockquote>
 
-      <p>ChatGPT Go went from ₹1,999 to ₹399 to free. That is the cheaper lever, pulled three times, and it has
-        bought enormous reach. <strong>The other lever has not been touched</strong>, and it is the one that decides
-        what happens when the free year ends.</p>
+      <p>ChatGPT Go went from ₹1,999 to ₹399 to free. That is the cheaper lever, pulled three times.
+        <strong>The other lever has not been touched</strong>, and it decides what happens when the free year
+        ends.</p>
     </div>
   </section>
 
   <section class="turn" id="s6">
     <div class="uwrap"><div class="ubub">So what would you actually do about it?</div></div>
     <div class="a">
-      <p>I have not seen your data, so these are the questions I would start from, not a plan.</p>
+      <p>I have not seen your data, so these are questions, not a plan.</p>
       <div class="cards">
         <div class="card"><span class="n">01</span><h4>Find the 45-plus cohort in the logs</h4>
           <p>Not by age, which you do not have, but by behaviour: Hindi and Indic-script prompts, festival and
-            invitation image generation, logged-out mobile web sessions repeating from one device. Size it before
-            arguing about it. My guess is it is larger than anyone has measured, because nobody has looked.</p></div>
+            invitation image generation, logged-out mobile sessions repeating from one device. It is probably
+            larger than anyone has measured, because nobody has looked.</p></div>
         <div class="card"><span class="n">02</span><h4>Give the output a reason to need an account</h4>
-          <p>The poster is finished, so there is nothing to come back for. Editable saved posters, a reusable
+          <p>The poster is finished, so there is nothing to come back for. Editable posters, a reusable
             style, her group's name remembered between sessions. At Crafto, personalisation was not a feature, it was
-            the entire reason people paid. It is also what an account is for.</p></div>
+            the entire reason people paid.</p></div>
         <div class="card"><span class="n">03</span><h4>Price the occasion, not the month</h4>
-          <p>Bharat buys festivals, not subscriptions. Crafto's festival-day payment conversion moved 21% off one
-            format change. When Go stops being free in month thirteen, a flat monthly price converts the under-30s who
-            already pay and loses everyone else.</p></div>
+          <p>Bharat buys festivals, not subscriptions. When Go stops being free in month thirteen, a flat monthly
+            price converts the under-30s who already pay and loses everyone else.</p></div>
         <div class="card"><span class="n">04</span><h4>Ship the WhatsApp edge</h4>
-          <p>Everything my mother makes leaves for WhatsApp within seconds and arrives with no idea where it came
-            from. That is a distribution loop running at full volume with attribution off. At Crafto the shareable
-            artefact was the acquisition channel, and two viral experiments lifted shares and downloads 50%.</p></div>
+          <p>Everything my mother makes leaves for WhatsApp and arrives with no idea where it came
+            from. A distribution loop at full volume with attribution off. At Crafto the shareable artefact was the
+            acquisition channel, and two viral experiments lifted shares and downloads 50%.</p></div>
       </div>
     </div>
   </section>
@@ -546,8 +549,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
   <section class="turn" id="work">
     <div class="uwrap"><div class="ubub">Show me the whole resume, not just the parts that suit your argument.</div></div>
     <div class="a">
-      <p>All of it, nothing removed. Filter it if you want to see one thread at a time. Some bullets match no filter,
-        and those stay in.</p>
+      <p>All of it, nothing removed. Filter it to see one thread at a time; bullets that match no filter stay in.</p>
       <div class="chips" id="chips" role="group" aria-label="Filter experience">
         <span class="chip" role="button" tabindex="0" aria-pressed="false" data-t="monetization"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.2 5.2L20 7"/></svg></span>Monetization</span>
         <span class="chip" role="button" tabindex="0" aria-pressed="false" data-t="conversion"><span class="tk"><svg viewBox="0 0 24 24"><path d="M4 12.5l5.2 5.2L20 7"/></svg></span>Conversion</span>
@@ -661,9 +663,8 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
     <div class="fg">
       <div>
         <p class="big">I would like to work on this at OpenAI.</p>
-        <p>I have not pointed this page at a particular opening, because the work I am describing does not map neatly
-          onto one. If it maps onto something you are already doing, I would rather hear about that than pitch you a
-          title.</p>
+        <p>I have not pointed this page at a particular opening, because the work does not map neatly onto one.
+          If it maps onto something you are already doing, I would rather hear about that than pitch you a title.</p>
         <p>Khushi Bagai. Bangalore, India.</p>
         <div class="pills">
           <a class="pill solid" href="mailto:khushibagai30.kb@gmail.com"><svg viewBox="0 0 24 24"><path d="M2 5.5A2.5 2.5 0 014.5 3h15A2.5 2.5 0 0122 5.5v13a2.5 2.5 0 01-2.5 2.5h-15A2.5 2.5 0 012 18.5zm2.2.3l7.8 5.6 7.8-5.6z"/></svg>Email me</a>
@@ -672,9 +673,9 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
         </div>
       </div>
     </div>
-    <p class="disc">Every India market figure on this page is public: OpenAI statements reported by TechCrunch, and FY25
-      statutory filings reported by Entrackr and Inc42. Nothing here comes from any employer's internal data. The
-      screenshots are my mother's, used with her permission, with the venue, date and time redacted.</p>
+    <p class="disc">Every India market figure here is public: OpenAI statements reported by TechCrunch, and FY25
+      statutory filings reported by Entrackr and Inc42. Nothing comes from any employer's internal data. The
+      screenshots are my mother's, used with her permission.</p>
   </div>
 </footer>
 
@@ -732,6 +733,7 @@ document.documentElement.className+=' js';
     // ChatGPT's empty state collapses once the first message is sent
     if(scrollY < 60){
       slot.style.height = '0px';
+      slot.style.minHeight = '0px';   // phones reserve 86px for the pill; let the band close too
       slot.style.marginTop = '0px';
     }
   }
@@ -746,8 +748,8 @@ document.documentElement.className+=' js';
     busy = true;
     comp.classList.add('typing');
     // a steady human rate, with a ceiling so the longest question still lands in
-    // about three and a half seconds
-    var base = Math.min(64, 4000 / text.length);
+    // a little over two seconds
+    var base = Math.min(34, 2100 / text.length);
     var i = 0;
     (function tick(){
       if(i >= text.length){
@@ -760,7 +762,7 @@ document.documentElement.className+=' js';
             setText(PH, false, true); place();
             done();
           }, 190);
-        }, 430);
+        }, 300);
         return;
       }
       var ch = text.charAt(i);
@@ -770,7 +772,7 @@ document.documentElement.className+=' js';
       // uneven the way real keystrokes are: jitter, the odd hesitation between
       // words, and a longer breath after punctuation
       var d = base * (0.55 + Math.random() * 0.9);
-      if(ch === ' ' && Math.random() < 0.20) d += base * 2.4;
+      if(ch === ' ' && Math.random() < 0.14) d += base * 1.8;
       if(ch === ',') d += base * 3;
       setTimeout(tick, d);
     })();
@@ -806,7 +808,7 @@ document.documentElement.className+=' js';
     ask(bub.textContent, function(){
       sec.classList.add('u-in');   // the question lands in the thread, already written
       dockIt();
-      answer(sec, 900, true);
+      answer(sec, 620, true);
     });
   }
 
