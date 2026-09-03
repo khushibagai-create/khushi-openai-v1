@@ -158,6 +158,34 @@ html.js .turn.a-in .a > *{opacity:1;transform:none;
   animation:think 1.1s ease-in-out infinite}
 @keyframes think{0%,100%{transform:scale(.7);opacity:.4}50%{transform:scale(1);opacity:1}}
 
+/* ---------- streaming reply ---------- */
+/* ChatGPT renders a reply as it is written, so the page does the same: blocks
+   arrive in order, text fills in word by word, and the cursor sits at the live
+   edge. The word span is visible by default and only the .off state hides it,
+   so a broken script can never leave a sentence invisible. */
+html.js .a span.w.off{opacity:0}
+.cur{display:inline-block;width:0;height:1em;position:relative;vertical-align:-.17em}
+.cur:after{content:"";position:absolute;left:2px;top:.05em;width:7px;height:.9em;
+  border-radius:2px;background:var(--ink);opacity:.85}
+/* while a reply is streaming the composer offers stop, the way ChatGPT does */
+.composer .orb .stop{display:none;width:11px;height:11px;border-radius:2.5px;background:#fff}
+.composer.streaming .mic{display:none}
+.composer.streaming .orb .bars,.composer.streaming .orb .arrow{display:none}
+.composer.streaming .orb .stop{display:block}
+
+/* ---------- the rest of the conversation, waiting to be asked ---------- */
+/* js only: with the script off every section stays in the page and readable */
+html.js .turn.q{display:none}
+.fups{display:none}
+html.js .fups{display:flex;flex-direction:column;align-items:flex-start;gap:9px;
+  padding:32px 0 4px;border-top:1px solid var(--line2)}
+html.js .fups.done{display:none}
+.followup{border:1px solid var(--line);background:#fff;border-radius:16px;padding:11px 16px;
+  font-size:15px;line-height:1.45;color:var(--ink2);text-align:left;max-width:100%;
+  cursor:pointer;user-select:none;transition:background .15s,color .15s}
+.followup:hover{background:var(--hover);color:var(--ink)}
+.followup:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
 /* ---------- evidence ---------- */
 .shots{display:grid;grid-template-columns:0.82fr 1fr 1fr;gap:14px;margin:6px 0 20px;align-items:start}
 .shot{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface)}
@@ -316,6 +344,8 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
   .st .v{font-size:22px}
   .callout{padding:18px 18px}
   .callout p{font-size:16.5px}
+  .followup{font-size:14.5px;padding:10px 14px}
+  html.js .fups{padding-top:26px}
   .br .ghost{display:none}
   .selector{font-size:15.5px;padding:6px 8px}
   footer{padding-bottom:70px}
@@ -324,7 +354,8 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
   *{animation:none !important;transition:none !important}
   .rv{opacity:1;transform:none}
   html.js .turn .uwrap,html.js .turn .a > *{opacity:1 !important;transform:none !important}
-  .thinking,.composer .caret{display:none}
+  html.js .a span.w,html.js .turn .a li{opacity:1 !important;transform:none !important}
+  .thinking,.composer .caret,.cur{display:none}
 }
 </style>
 
@@ -368,7 +399,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
       <span class="plus"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span>
       <span class="txt" id="typed"></span>
       <span class="mic"><svg viewBox="0 0 24 24"><path d="M12 3a3 3 0 013 3v6a3 3 0 01-6 0V6a3 3 0 013-3z"/><path d="M19 11a7 7 0 01-14 0M12 18v3"/></svg></span>
-      <span class="orb"><i class="bars"></i><svg class="arrow" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span>
+      <span class="orb"><i class="bars"></i><i class="stop"></i><svg class="arrow" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg></span>
     </div>
     <p class="hint">Every number on this page is public and cited. Check important info.</p>
     </div></div>
@@ -426,7 +457,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
     </div>
   </section>
 
-  <section class="turn" id="s2">
+  <section class="turn q" id="s2">
     <div class="uwrap"><div class="ubub">How big is India for OpenAI, and what does it earn there?</div></div>
     <div class="a">
       <p>Enormous, and close to nothing, on purpose.</p>
@@ -505,7 +536,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
     </div>
   </section>
 
-  <section class="turn" id="writing">
+  <section class="turn q" id="writing">
     <div class="uwrap"><div class="ubub">Is this a new opinion, or have you been saying it for a while?</div></div>
     <div class="a">
       <p>I have been writing about this audience for two years, long before I had a reason to send it to you.</p>
@@ -522,7 +553,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
     </div>
   </section>
 
-  <section class="turn" id="s6">
+  <section class="turn q" id="s6">
     <div class="uwrap"><div class="ubub">So what would you actually do about it?</div></div>
     <div class="a">
       <p>I have not seen your data, so these are questions, not a plan.</p>
@@ -546,7 +577,7 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
     </div>
   </section>
 
-  <section class="turn" id="work">
+  <section class="turn q" id="work">
     <div class="uwrap"><div class="ubub">Show me the whole resume, not just the parts that suit your argument.</div></div>
     <div class="a">
       <p>All of it, nothing removed. Filter it to see one thread at a time; bullets that match no filter stay in.</p>
@@ -656,6 +687,13 @@ footer{border-top:1px solid var(--line);margin-top:56px;padding:44px 0 90px}
     </div>
   </section>
 
+  <div class="fups" id="followups" role="group" aria-label="Suggested follow-ups">
+    <span class="followup" role="button" tabindex="0" data-q="s2">How big is India for OpenAI, and what does it earn there?</span>
+    <span class="followup" role="button" tabindex="0" data-q="writing">Is this a new opinion, or have you been saying it for a while?</span>
+    <span class="followup" role="button" tabindex="0" data-q="s6">So what would you actually do about it?</span>
+    <span class="followup" role="button" tabindex="0" data-q="work">Show me the whole resume, not just the parts that suit your argument.</span>
+  </div>
+
 </div>
 
 <footer>
@@ -695,7 +733,16 @@ document.documentElement.className+=' js';
   var comp  = document.getElementById('composer');
   var typed = document.getElementById('typed');
   var fade  = document.getElementById('dockfade');
+  var fups  = document.getElementById('followups');
+  var fupq  = [];
   var PH = 'Ask anything';
+
+  // reduced motion gets the whole page flat: nothing is queued behind a chip,
+  // because the chip mechanic is the animation
+  if(reduce){
+    [].slice.call(document.querySelectorAll('.turn.q')).forEach(function(s){ s.classList.remove('q'); });
+    if(fups) fups.classList.add('done');
+  }
 
   function setText(t, caret, placeholder){
     typed.className = 'txt' + (placeholder ? ' ph' : '');
@@ -778,12 +825,136 @@ document.documentElement.className+=' js';
     })();
   }
 
+  // ---- the reply streams, the way ChatGPT writes one ----
+  var streamingSec = null;
+  function setStream(on){ comp.classList.toggle('streaming', !!on); }
+
+  function show(el, instant){
+    el.style.transition = instant ? 'none'
+      : 'opacity .18s ease, transform .22s cubic-bezier(.2,.7,.3,1)';
+    el.style.opacity = '1';
+    el.style.transform = 'none';
+  }
+
+  // split text nodes into word spans and never touch element nodes, so strong,
+  // a and cite come through exactly as written
+  function wrapWords(el){
+    var walk = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+    var nodes = [], n;
+    while((n = walk.nextNode())) nodes.push(n);
+    var spans = [];
+    nodes.forEach(function(t){
+      if(!/\S/.test(t.nodeValue)) return;
+      var parts = t.nodeValue.match(/\s+|\S+/g) || [];
+      var frag = document.createDocumentFragment();
+      parts.forEach(function(p){
+        if(!/\S/.test(p)){ frag.appendChild(document.createTextNode(p)); return; }
+        var w = document.createElement('span');
+        w.className = 'w off';
+        w.textContent = p;
+        frag.appendChild(w);
+        spans.push(w);
+      });
+      t.parentNode.replaceChild(frag, t);
+    });
+    return spans;
+  }
+
+  // prose streams by the word; a table, a screenshot row or a card grid cannot
+  // be read that way, so it fades in as one thing and the reply moves on
+  function buildBlocks(a){
+    var out = [];
+    [].slice.call(a.children).forEach(function(c){
+      var tn = c.tagName;
+      if((tn==='P'||tn==='H3'||tn==='BLOCKQUOTE') && !c.classList.contains('aside')){
+        out.push({el:c, kind:'t', words:wrapWords(c)}); return;
+      }
+      if(tn==='UL'||tn==='OL'){
+        var items = [].slice.call(c.children).filter(function(x){ return x.tagName==='LI'; });
+        if(items.length){
+          out.push({el:c, kind:'open'});
+          items.forEach(function(li){
+            li.style.opacity = '0'; li.style.transform = 'translateY(6px)';
+            out.push({el:li, kind:'t', words:wrapWords(li)});
+          });
+          return;
+        }
+      }
+      out.push({el:c, kind:'f'});
+    });
+    return out;
+  }
+
+  // land the whole answer at once: used when the reader has scrolled past, and
+  // when a sidebar link jumps to something that has not been asked yet
+  function finishAll(sec){
+    sec.classList.add('u-in'); sec.classList.add('a-in');
+    var a = sec.querySelector('.a');
+    if(!a){ return; }
+    a.__run = (a.__run || 0) + 1;                       // stop anything mid-stream
+    [].slice.call(a.querySelectorAll('span.w.off')).forEach(function(w){ w.classList.remove('off'); });
+    [].slice.call(a.querySelectorAll('.cur')).forEach(function(c){ c.parentNode.removeChild(c); });
+    [].slice.call(a.children).forEach(function(k){ show(k, true); });
+    [].slice.call(a.querySelectorAll('li')).forEach(function(l){ if(l.style.opacity !== '') show(l, true); });
+    var dots = sec.querySelectorAll('.thinking');
+    [].slice.call(dots).forEach(function(d){ d.parentNode.removeChild(d); });
+    if(streamingSec === sec){ streamingSec = null; setStream(false); busy = false; }
+  }
+
+  function streamWords(a, run, spans, cur, done){
+    if(!spans.length){ done(); return; }
+    var n = spans.length;
+    var per = 16 + Math.random() * 10;                  // a reading rate, not a typing rate
+    if(per * n > 1150) per = 1150 / n;                  // no single block may drag
+    var i = 0;
+    (function tick(){
+      if(a.__run !== run) return;
+      var w = spans[i++];
+      w.classList.remove('off');
+      w.appendChild(cur);                               // zero width, so nothing reflows
+      if(i >= n){ done(); return; }
+      setTimeout(tick, Math.max(6, per * (0.6 + Math.random() * 0.8)));
+    })();
+  }
+
+  function runBlocks(sec, a, blocks){
+    a.__run = (a.__run || 0) + 1;
+    var run = a.__run;
+    var cur = document.createElement('span');
+    cur.className = 'cur';
+    streamingSec = sec; setStream(true);
+    var i = 0;
+    (function next(){
+      if(a.__run !== run) return;
+      if(i >= blocks.length){
+        if(cur.parentNode) cur.parentNode.removeChild(cur);
+        sec.classList.add('a-in');
+        streamingSec = null; setStream(false);
+        busy = false;
+        if(fupq.length) pump(); else check();
+        return;
+      }
+      var b = blocks[i++];
+      if(b.kind === 'open'){ show(b.el, true); next(); return; }
+      if(b.kind === 'f'){
+        if(cur.parentNode) cur.parentNode.removeChild(cur);
+        show(b.el, false);
+        setTimeout(next, 190);
+        return;
+      }
+      show(b.el, true);
+      streamWords(a, run, b.words, cur, function(){ setTimeout(next, 60); });
+    })();
+  }
+
   function answer(sec, wait, dotted){
     var a = sec.querySelector('.a');
-    var kids = a ? [].slice.call(a.children) : [];
-    if(reduce){ sec.classList.add('a-in'); busy=false; return; }
+    if(!a){ busy = false; check(); return; }
+    if(reduce){ finishAll(sec); busy = false; return; }
+    a.__run = (a.__run || 0) + 1;
+    var run = a.__run;
     var dot = null;
-    if(a && dotted){
+    if(dotted){
       dot = document.createElement('div');
       dot.className = 'thinking';
       dot.innerHTML = '<i></i>';
@@ -791,10 +962,8 @@ document.documentElement.className+=' js';
     }
     setTimeout(function(){
       if(dot && dot.parentNode) dot.parentNode.removeChild(dot);
-      kids.forEach(function(k,i){ k.style.transitionDelay = Math.min(i*115,780)+'ms'; });
-      sec.classList.add('a-in');
-      busy = false;
-      check();
+      if(a.__run !== run) return;          // it was landed whole while we waited
+      runBlocks(sec, a, a.__blocks || (a.__blocks = buildBlocks(a)));
     }, wait);
   }
 
@@ -812,9 +981,60 @@ document.documentElement.className+=' js';
     });
   }
 
-  function reveal(sec){ sec.classList.add('u-in'); sec.classList.add('a-in'); }
+  function reveal(sec){ finishAll(sec); }
 
-  var pending = [].slice.call(document.querySelectorAll('.turn'));
+  // ---- the questions that have not been asked yet ----
+  // asking one is the same act as any other question: it types into the
+  // composer, lands as a bubble at the foot of the thread, and streams back
+  function takeChip(id){
+    if(!fups) return;
+    var c = fups.querySelector('.followup[data-q="' + id + '"]');
+    if(c) c.parentNode.removeChild(c);
+    if(!fups.querySelector('.followup')) fups.classList.add('done');
+    var qi = fupq.indexOf(id);
+    if(qi > -1) fupq.splice(qi, 1);
+  }
+
+  function landSection(sec){
+    sec.classList.remove('q');
+    if(fups && fups.parentNode) fups.parentNode.insertBefore(sec, fups);
+  }
+
+  function pump(){
+    if(reduce || busy || !fupq.length) return;
+    var id = fupq.shift();
+    var sec = document.getElementById(id);
+    if(!sec || !sec.classList.contains('q')){ pump(); return; }
+    busy = true;
+    landSection(sec);
+    dockIt();
+    scrollTo(0, Math.max(0, sec.getBoundingClientRect().top + scrollY - 76));
+    play(sec);
+  }
+
+  function askFollow(chip){
+    var id = chip.getAttribute('data-q');
+    if(!id) return;
+    var c = fups.querySelector('.followup[data-q="' + id + '"]');
+    if(c) c.parentNode.removeChild(c);
+    if(!fups.querySelector('.followup')) fups.classList.add('done');
+    if(fupq.indexOf(id) < 0) fupq.push(id);
+    pump();
+  }
+
+  if(fups){
+    fups.addEventListener('click', function(e){
+      var c = e.target && e.target.closest ? e.target.closest('.followup') : null;
+      if(c) askFollow(c);
+    });
+    fups.addEventListener('keydown', function(e){
+      if(e.key !== 'Enter' && e.key !== ' ' && e.key !== 'Spacebar') return;
+      var c = e.target && e.target.closest ? e.target.closest('.followup') : null;
+      if(c){ e.preventDefault(); askFollow(c); }
+    });
+  }
+
+  var pending = [].slice.call(document.querySelectorAll('.turn:not(.q)'));
   function check(){
     for(var i=pending.length-1;i>=0;i--){
       // scrolled clean past it: show it, do not perform to an empty room
@@ -839,7 +1059,7 @@ document.documentElement.className+=' js';
     if(!busy && pending.indexOf(firstTurn) === 0){ pending.shift(); play(firstTurn); }
   }, 950);
   // backstop for a missed scroll event; same viewport rule, so it can never run ahead
-  setInterval(function(){ if(pending.length) check(); }, 700);
+  setInterval(function(){ if(!busy && fupq.length) pump(); if(pending.length) check(); }, 700);
 
   var hdr=document.querySelector('header');
   addEventListener('scroll',function(){ hdr.classList.toggle('stuck', scrollY>12); },{passive:true});
@@ -847,17 +1067,43 @@ document.documentElement.className+=' js';
   // sidebar scroll-spy
   var links=[].slice.call(document.querySelectorAll('#sdlist a'));
   var secs=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  function live(s){ return s && !s.classList.contains('q'); }
   function spy(){
     var best=-1, bestTop=-1e9;
     secs.forEach(function(s,i){
-      if(!s) return;
+      if(!live(s)) return;
       var top=s.getBoundingClientRect().top-120;
       if(top<=0 && top>bestTop){ bestTop=top; best=i; }
     });
-    if(scrollY+innerHeight>=document.body.scrollHeight-4) best=links.length-1;
+    if(scrollY+innerHeight>=document.body.scrollHeight-4){
+      var low=-1e9;
+      secs.forEach(function(s,i){
+        if(!live(s)) return;
+        var t=s.getBoundingClientRect().top;
+        if(t>low){ low=t; best=i; }
+      });
+    }
     links.forEach(function(a,i){ a.classList.toggle('on', i===best); });
   }
   addEventListener('scroll',spy,{passive:true}); addEventListener('resize',spy); spy();
+
+  // a chat in the sidebar always opens: if that section has not been asked yet,
+  // it lands in the thread first and then the link scrolls to it
+  links.forEach(function(a){
+    a.addEventListener('click', function(e){
+      var sec=document.getElementById(a.getAttribute('href').slice(1));
+      if(!sec || !sec.classList.contains('q')) return;
+      e.preventDefault();
+      takeChip(sec.id);
+      landSection(sec);
+      finishAll(sec);
+      dockIt();
+      requestAnimationFrame(function(){
+        scrollTo(0, Math.max(0, sec.getBoundingClientRect().top + scrollY));
+        spy();
+      });
+    });
+  });
 
   var chips=[].slice.call(document.querySelectorAll('#chips .chip'));
   var lis=[].slice.call(document.querySelectorAll('.job li'));
